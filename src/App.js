@@ -1,13 +1,27 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "./styles.css";
-import Navbar from "./components/Navbar";
+import LoadingPage from './components/LoadingPage';
+import Helmet from 'react-helmet';
+
+const HomePage = lazy(() => import('./pages/HomePage'))
+const LoginPage = lazy(() => import('./pages/LoginPage'))
 
 export default function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
+    <>
+    <Helmet>
+      <title>Home - {process.env.REACT_APP_TITLE}</title>
+    </Helmet>
+
+      <Router>
+        <Suspense fallback={<LoadingPage />}>
+          <Switch>
+            <Route exact path="/" component={HomePage}></Route>
+            <Route path="/login" component={LoginPage}></Route>
+          </Switch>
+        </Suspense>
+      </Router>
+    </>
   );
 }

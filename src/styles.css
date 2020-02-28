@@ -1,4 +1,20 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+header,
+main,
+footer {
+    padding-left: 300px;
+}
+
+ul.sidenav.sidenav-fixed li.logo {
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 80px;
+}
+
+@media only screen and (max-width : 992px) {
+
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
 }
